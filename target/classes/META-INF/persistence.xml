@@ -6,5 +6,7 @@
 	<persistence-unit name="persistence-data">
 		<class>com.nongnghiepxanh.entity.NewEntity</class>
 		<class>com.nongnghiepxanh.entity.CategoryEntity</class>
+		<class>com.nongnghiepxanh.entity.UserEntity</class>
+		<class>com.nongnghiepxanh.entity.RoleEntity</class>
 	</persistence-unit>
 </persistence>
