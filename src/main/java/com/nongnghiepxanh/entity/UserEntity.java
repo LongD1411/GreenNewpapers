@@ -19,6 +19,8 @@ public class UserEntity extends BaseEntity {
 	private String userName;
 	@Column(name="password")
 	private String password;
+	@Column(name="status")
+	private int status;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name= "user_role",
 					   joinColumns = @JoinColumn(name = "user_id"),
@@ -38,6 +40,13 @@ public class UserEntity extends BaseEntity {
 	}
 	public String getPassword() {
 		return password;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public void setPassword(String password) {
 		this.password = password;
