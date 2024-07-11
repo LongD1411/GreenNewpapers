@@ -25,8 +25,8 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="<c:url value='/trang-chu' />" class="nav-item nav-link active">Home</a>
-                    <a href="<c:url value='/danh-muc' />" class="nav-item nav-link">Categories</a>
+                    <a href="<c:url value='/trang-chu' />" class="nav-item nav-link ${active == 'home' ? 'active' :''} ">Home</a>
+                    <a href="<c:url value='/danh-muc' />" class="nav-item nav-link ${active == 'category' ? 'active' :''}">Categories</a>
                    <!--  <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
                         <div class="dropdown-menu rounded-0 m-0">
@@ -35,7 +35,7 @@
                             <a href="#" class="dropdown-item">Menu item 3</a>
                         </div>
                     </div> -->
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="contact.html" class="nav-item nav-link ${active == 'contact' ? 'active' :''}">Contact</a>
                 </div>
                 <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
                     <input type="text" class="form-control" placeholder="Keyword">

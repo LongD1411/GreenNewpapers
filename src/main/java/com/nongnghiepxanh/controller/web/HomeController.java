@@ -16,11 +16,13 @@ public class HomeController {
 	@RequestMapping(value="/trang-chu",method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("web/index");
+		mav.addObject("active", "home");
 		return mav;
 	}
 	@RequestMapping(value="/danh-muc",method = RequestMethod.GET)
 	public ModelAndView category() {
 		ModelAndView mav = new ModelAndView("web/category");
+		mav.addObject("active", "category");
 		return mav;
 	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
