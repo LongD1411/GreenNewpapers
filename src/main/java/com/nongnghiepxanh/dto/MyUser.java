@@ -12,12 +12,11 @@ public class MyUser extends User{
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
-	private String 	fullName;
+	private String fullName;
 	public String getFullName() {
 		return fullName;
 	}
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	
 }

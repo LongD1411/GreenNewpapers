@@ -18,9 +18,19 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/index");
 		return mav;
 	}
+	@RequestMapping(value="/danh-muc",method = RequestMethod.GET)
+	public ModelAndView category() {
+		ModelAndView mav = new ModelAndView("web/category");
+		return mav;
+	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
 	public ModelAndView loginPage() {
 		ModelAndView mav = new ModelAndView("login");
+		return mav;
+	}
+	@RequestMapping(value = "/single-new-test", method = RequestMethod.GET)
+	public ModelAndView singlenew() {
+		ModelAndView mav = new ModelAndView("web/SingleNew");
 		return mav;
 	}
 	@RequestMapping(value = "/thoat", method = RequestMethod.GET)

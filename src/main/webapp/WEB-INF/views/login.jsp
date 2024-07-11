@@ -22,6 +22,11 @@
 							Mày đừng có cố, tao ban mày đó
 					</div>
 				</c:if>
+				<c:if test="${param.sessionTimeout != null}">
+					<div class="alert alert-danger">
+							Phiên đăng nhập đã hết hạn
+					</div>
+				</c:if>
 				<form action="j_spring_security_check" id="formLogin" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" id="userName" name="j_username"

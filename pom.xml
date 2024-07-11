@@ -1,10 +1,9 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.laptrinhjavaweb</groupId>
-	<artifactId>spring-mvc</artifactId>
+	<groupId>com.nongnghiepxanh</groupId>
+	<artifactId>nongnghiep</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
@@ -147,7 +146,7 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data}</version>
 		</dependency>
-		
+
 		<!-- json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -176,6 +175,18 @@
 			<version>1.9.13</version>
 		</dependency>
 		<!--end json -->
+		<!-- Common file upload-->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
 
 	</dependencies>
 
