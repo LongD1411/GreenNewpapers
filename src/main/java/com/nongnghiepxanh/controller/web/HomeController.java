@@ -26,8 +26,13 @@ public class HomeController {
 		return mav;
 	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
-	public ModelAndView loginPage() {
+	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("login");
+		return mav;
+	}
+	@RequestMapping(value = "/lien-he", method = RequestMethod.GET)
+	public ModelAndView contact() {
+		ModelAndView mav = new ModelAndView("web/contact");
 		return mav;
 	}
 	@RequestMapping(value = "/single-new-test", method = RequestMethod.GET)

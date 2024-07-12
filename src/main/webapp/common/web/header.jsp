@@ -35,7 +35,7 @@
                             <a href="#" class="dropdown-item">Menu item 3</a>
                         </div>
                     </div> -->
-                    <a href="contact.html" class="nav-item nav-link ${active == 'contact' ? 'active' :''}">Contact</a>
+                    <a href="<c:url value='/lien-he' />" class="nav-item nav-link ${active == 'contact' ? 'active' :''}">Contact</a>
                 </div>
                 <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
                     <input type="text" class="form-control" placeholder="Keyword">

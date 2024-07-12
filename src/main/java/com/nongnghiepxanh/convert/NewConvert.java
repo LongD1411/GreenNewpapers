@@ -22,6 +22,7 @@ public class NewConvert {
 				dto.setId(item.getId());
 				dto.setContent(item.getContent());
 				dto.setShortDescription(item.getShortDescription());
+				dto.setThumbnail(item.getThumbnail());
 				result.add(dto);
 			}
 		return result;
@@ -48,6 +49,7 @@ public class NewConvert {
 		dto.setShortDescription(entity.getShortDescription());
 		dto.setTitle(entity.getTitle());
 		dto.setId(entity.getId());
+		dto.setThumbnail(entity.getThumbnail());
 		return dto;
 		
 	}

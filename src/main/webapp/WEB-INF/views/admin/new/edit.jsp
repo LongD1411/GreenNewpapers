@@ -68,8 +68,11 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1">Ảnh đại diện </label>
 									<div class="col-sm-5">
+										<c:if test="${not empty model.thumbnail }">
+										  <img src="<c:url value='/template/web/img/${model.thumbnail}'  />" style="width: 80px; height: 80px; object-fit: cover;">
+										</c:if>
 										<input type="file" class="col-xs-10 col-sm-5" id="thumbnail"
-											name="thumbnail" >
+											name="thumbnail">
 									</div>
 								</div>
 								<div class="form-group">
@@ -123,10 +126,11 @@
 		</div>
 	</div>
 	<script>
- 	/* var editor = ' ';
+ 	 var editor = '';
 	$(document).ready(function(){
 		 editor = CKEDITOR.replace('content');
-		}); */
+		}); 
+	 
 		$('#btnAddOrUpdateNew').click	((e) =>{
 			e.preventDefault();
 		    var data = {};

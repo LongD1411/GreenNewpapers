@@ -26,7 +26,6 @@ public class NewService implements INewService{
 	@Override
 	public List<NewDTO> findAll(Pageable pageAble) {
 		List<NewDTO> result = newConvert.toDTO(newRepository.findAll(pageAble).getContent());
-		Collections.reverse(result);
 		return result;
 	}
 	@Override

@@ -60,6 +60,7 @@
 											<thead>
 												<tr>
 													<th><input type="checkbox" id="checkAll"></th>
+													<th>Ảnh đại diện </th>
 													<th>Tên bài viết</th>
 													<th>Mô tả ngắn</th>
 													<th>Thao tác</th>
@@ -70,6 +71,7 @@
 													<tr>
 														<td><input type="checkbox" id="checkbox_${item.id}"
 															value="${item.id}"></td>
+															<td> <img src="<c:url value='/template/web/img/${item.thumbnail}'  />" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
 														<td>${item.title}</td>
 														<td>${item.shortDescription}</td>
 														<td><c:url var="updateNewURL"
@@ -80,7 +82,7 @@
 															href='${updateNewURL }'><i
 																class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
 																 <input type='button' data="${item.id }" class="btn btn-danger btn-sm"   value="Xóa"    type="student"  onclick="warningBeforeDelete()"> </a>
-																</td>
+															</td>
 													</tr>
 												</c:forEach>
 											</tbody>

@@ -29,7 +29,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
- <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
+ <script src="<c:url value='/resources/ckeditor/ckeditor.js' />"></script>
  
 </head>
 <body class="no-skin">
