@@ -19,12 +19,6 @@ public class HomeController {
 		mav.addObject("active", "home");
 		return mav;
 	}
-	@RequestMapping(value="/danh-muc",method = RequestMethod.GET)
-	public ModelAndView category() {
-		ModelAndView mav = new ModelAndView("web/category");
-		mav.addObject("active", "category");
-		return mav;
-	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("login");
