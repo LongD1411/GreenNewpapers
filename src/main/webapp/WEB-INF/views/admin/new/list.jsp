@@ -71,7 +71,7 @@
 													<tr>
 														<td><input type="checkbox" id="checkbox_${item.id}"
 															value="${item.id}"></td>
-															<td> <img src="<c:url value='/template/web/img/${item.thumbnail}'  />" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
+															<td> <img src="<c:url value='/resources/img/${item.thumbnail}'  />" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
 														<td>${item.title}</td>
 														<td>${item.shortDescription}</td>
 														<td><c:url var="updateNewURL"
@@ -144,7 +144,6 @@
 		            	swal("Đã xóa thành công.").then(() => {
 		            		window.location.href = "${newURL}";
 		            	});
-		               
 		            },
 		            error: function (error) {
 		            	  swal("Lỗi !"); 

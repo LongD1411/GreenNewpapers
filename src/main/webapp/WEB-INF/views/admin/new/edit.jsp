@@ -69,7 +69,7 @@
 										for="form-field-1">Ảnh đại diện </label>
 									<div class="col-sm-5">
 										<c:if test="${not empty model.thumbnail }">
-										  <img src="<c:url value='/template/web/img/${model.thumbnail}'  />" style="width: 80px; height: 80px; object-fit: cover;">
+										  <img src="<c:url value='/resources/img/${model.thumbnail}'  />" style="width: 80px; height: 80px; object-fit: cover;">
 										</c:if>
 										<input type="file" class="col-xs-10 col-sm-5" id="thumbnail"
 											name="thumbnail">
@@ -126,11 +126,11 @@
 		</div>
 	</div>
 	<script>
- 	 var editor = '';
+	var editor = '';
 	$(document).ready(function(){
-		 editor = CKEDITOR.replace('content');
-		}); 
-	 
+	     editor = CKEDITOR.replace('content');
+	     CKFinder.setupCKEditor(editor, '/nongnghiep/resources/ckfinder/');
+	});
 		$('#btnAddOrUpdateNew').click	((e) =>{
 			e.preventDefault();
 		    var data = {};
@@ -138,6 +138,8 @@
 		    $.each(formDataArray, function (i, v) {
 		        data["" + v.name + ""] = v.value;
 		    });
+		    const content = CKEDITOR.instances['content'].getData();
+			data['content'] = content;
 		    var formData = new FormData();
 		    formData.append('thumbnail', $('#thumbnail')[0].files[0]);
 		    formData.append('newDTO', new Blob([JSON.stringify(data)], { type: 'application/json' }));
