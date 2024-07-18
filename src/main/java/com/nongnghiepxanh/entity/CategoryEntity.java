@@ -17,6 +17,25 @@ public class CategoryEntity extends BaseEntity {
 
 	@Column(name = "code")
 	private String code;
+	@Column(name = "thumbnail")
+	private String thumbnail;
+	@Column(name = "type")
+	private String type;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 
 	@OneToMany(mappedBy = "category")
 	private List<NewEntity> news = new ArrayList<>();

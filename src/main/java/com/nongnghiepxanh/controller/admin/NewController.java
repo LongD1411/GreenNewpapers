@@ -22,10 +22,10 @@ public class NewController {
 	@Autowired ICategoryService categoryService;
 	@RequestMapping(value = "/quan-tri/bai-viet/danh-sach", method = RequestMethod.GET)
 	public ModelAndView home(@RequestParam(value = "page", defaultValue = "1", required = false) int page) {
-		Pageable pageAble = new PageRequest(page - 1, 2);
+		Pageable pageAble = new PageRequest(page - 1, 4);
 		NewDTO model = new NewDTO();
 		model.setListResult(newService.findAll(pageAble));
-		model.setLimit(2);
+		model.setLimit(4);
 		model.setPage(page);
 		model.setTotalItem(newService.totalItem());
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));

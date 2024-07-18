@@ -21,31 +21,13 @@ public class NewAPI {
 	private INewService newService;
 
 	@PostMapping("/api/create-new")
-	public NewDTO createNew(@RequestPart("newDTO") NewDTO dto, @RequestPart("thumbnail") MultipartFile fileImg) {
-		System.out.println(fileImg.getOriginalFilename());
-		try {
-			// Gọi hàm saveFile để lưu file
-			String filePath = FileUploadUtil.saveFile(fileImg);
-			// Lưu đường dẫn file vào cơ sở dữ liệu
-			dto.setThumbnail(filePath);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public NewDTO createNew(@RequestBody NewDTO dto) {
 		return newService.save(dto);
 	}
-
 	@PutMapping("/api/update-new")
-	public NewDTO updateNew(@RequestPart("newDTO") NewDTO dto, @RequestPart("thumbnail") MultipartFile fileImg) {
-		System.out.println(fileImg.getOriginalFilename());
-		try {
-			String filePath = FileUploadUtil.saveFile(fileImg);
-			dto.setThumbnail(filePath);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public NewDTO updateNew(@RequestBody NewDTO dto) {
 		return newService.save(dto);
 	}
-
 	@DeleteMapping("/api/delete-new")
 	public void deleteNew(@RequestBody long[] ids) {
 		newService.deleteNew(ids);

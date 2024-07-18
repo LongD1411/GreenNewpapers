@@ -1,8 +1,11 @@
 package com.nongnghiepxanh.controller.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -11,12 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nongnghiepxanh.dto.CategoryDTO;
+import com.nongnghiepxanh.dto.NewDTO;
+import com.nongnghiepxanh.service.ICategoryService;
+import com.nongnghiepxanh.service.INewService;
+
 @Controller(value="homeControllerOfWeb")
 public class HomeController {
+	@Autowired
+	private INewService newService;
+	@Autowired
+	private ICategoryService categoryService;
 	@RequestMapping(value="/trang-chu",method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("web/index");
 		mav.addObject("active", "home");
+		List<NewDTO> headNew = newService.findHeadNew("head");
+		List<NewDTO> midNew = newService.findHeadNew("mid");
+		List<CategoryDTO> topCategory = categoryService.topCategory("hot");
+		mav.addObject("headNewList",headNew);
+		mav.addObject("midNewList",midNew);
+		mav.addObject("categoryList",topCategory);
 		return mav;
 	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)

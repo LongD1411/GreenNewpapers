@@ -1,5 +1,6 @@
 package com.nongnghiepxanh.convert;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class NewConvert {
 				dto.setContent(item.getContent());
 				dto.setShortDescription(item.getShortDescription());
 				dto.setThumbnail(item.getThumbnail());
+				dto.setType(item.getType());
+				dto.setModifiedDate((Timestamp) item.getModifiedDate());
+				dto.setModifiedBy(item.getModifiedBy());
 				result.add(dto);
 			}
 		return result;
@@ -33,6 +37,7 @@ public class NewConvert {
 		entity.setShortDescription(dto.getShortDescription());
 		entity.setTitle(dto.getTitle());
 		entity.setThumbnail(dto.getThumbnail());
+		entity.setType(dto.getType());
 		return entity;
 	}
 	public NewEntity toEntity(NewEntity entity,NewDTO dto) {
@@ -40,6 +45,7 @@ public class NewConvert {
 		entity.setShortDescription(dto.getShortDescription());
 		entity.setThumbnail(dto.getThumbnail());
 		entity.setTitle(dto.getTitle());
+		entity.setType(dto.getType());
 		return entity;
 	}
 	public NewDTO toDTO(NewEntity entity) {
@@ -50,6 +56,9 @@ public class NewConvert {
 		dto.setTitle(entity.getTitle());
 		dto.setId(entity.getId());
 		dto.setThumbnail(entity.getThumbnail());
+		dto.setType(entity.getType());
+		dto.setModifiedDate((Timestamp) entity.getModifiedDate());
+		dto.setModifiedBy(entity.getModifiedBy());
 		return dto;
 		
 	}

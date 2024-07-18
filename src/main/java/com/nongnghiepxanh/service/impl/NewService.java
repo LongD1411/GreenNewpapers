@@ -59,4 +59,8 @@ public class NewService implements INewService{
 			newRepository.delete(id);
 		}
 	}
+	@Override
+	public List<NewDTO> findHeadNew(String type) {
+		 return newConvert.toDTO(newRepository.findAllByType(type));
+	}
 }

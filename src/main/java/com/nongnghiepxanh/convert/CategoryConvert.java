@@ -17,6 +17,8 @@ public class CategoryConvert {
 			dto.setCode(item.getCode());
 			dto.setId(item.getId());
 			dto.setName(item.getName());
+			dto.setThumbnail(item.getThumbnail());
+			dto.setType(item.getType());
 			result.add(dto);
 		}
 		return result;

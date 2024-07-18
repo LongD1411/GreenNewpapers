@@ -5,9 +5,9 @@
 <div class="container-fluid">
 	<div class="container">
 		<nav class="breadcrumb bg-transparent m-0 p-0">
-			<a class="breadcrumb-item" href="#">Home</a> <a
-				class="breadcrumb-item" href="#">Category</a> <span
-				class="breadcrumb-item active">a</span>
+			<a class="breadcrumb-item" href="<c:url value='/trang-chu'/>">Home</a> <a
+				class="breadcrumb-item" href="<c:url value='/danh-muc'/>">Category</a> <span
+				class="breadcrumb-item active"></span>
 		</nav>
 	</div>
 </div>

@@ -30,14 +30,8 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-							<c:if test="${not empty message }">
-								<div class="alert alert-${alert }">
-									<strong>${message }</strong>
-								</div>
-							</c:if>
-
 							<form:form class="form-horizontal" role="form" id="formSubmit"
-								modelAttribute="model"  enctype="multipart/form-data" >
+								modelAttribute="model">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="categoryCode"> Thể loại bài viết:</label>
@@ -49,11 +43,18 @@
 												<option value="${item.code }">${item.name}</option>
 											</c:forEach>
 										</select> --%>
-										<form:select path="categoryCode" id="categoryCode" >
+										<form:select path="categoryCode" id="categoryCode">
 											<form:option value="" label="--- Chọn thể loại ---" />
 											<form:options items='${categories}' />
-										</form:select> 
+										</form:select>
 									</div>
+								</div>
+								<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"
+										for="categoryCode">Mẫu:</label>
+								<div class="col-sm-9">
+								<form:input path="type" cssClass="col-xs-7" />
+								</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
@@ -61,18 +62,29 @@
 									<div class="col-sm-9">
 										<%-- <input type="text" id="title" name="title"
 											class="col-xs-10 col-sm-5" value="${model.tittle }"> --%>
-										<form:input path="title"   cssClass="col-xs-7"   />
+										<form:input path="title" cssClass="col-xs-7" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1">Ảnh đại diện </label>
 									<div class="col-sm-5">
-										<c:if test="${not empty model.thumbnail }">
-										  <img src="<c:url value='/resources/img/${model.thumbnail}'  />" style="width: 80px; height: 80px; object-fit: cover;">
+										<c:if test="${empty model.thumbnail}">
+											<form:input type="hidden" path="thumbnail" id="thumbnail" />
+											<img id="imageUrl" src="" alt="Chưa có ảnh"
+											style="width: 80px; height: 80px; object-fit: cover;" />
+										<button type="button"
+											onclick="selectFileWithCKFinder('imageUrl');">Select
+											Image</button>
 										</c:if>
-										<input type="file" class="col-xs-10 col-sm-5" id="thumbnail"
-											name="thumbnail">
+										<c:if test="${not empty model.thumbnail}">
+											<form:input type="hidden" path="thumbnail" id="thumbnail" />
+											<img id="imageUrl" src="${model.thumbnail}" alt="Chưa có ảnh"
+											style="width: 80px; height: 80px; object-fit: cover;" />
+										<button type="button"
+											onclick="selectFileWithCKFinder('imageUrl');">Select
+											Image</button>
+										</c:if>
 									</div>
 								</div>
 								<div class="form-group">
@@ -82,17 +94,17 @@
 										<%-- <textarea class="form-control" rows="5" cols="10"
 											id="shortDescription" name="shortDescription">${model.shortDescription }</textarea> --%>
 										<form:textarea path="shortDescription" rows="5" cols="10"
-											cssClass="form-control" id="shortDescription"  />
+											cssClass="form-control" id="shortDescription" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="content">Nội dung:</label>
 									<div class="col-sm-9">
-									<%-- <textarea class="form-control" rows="5" cols="10" id="content"
+										<%-- <textarea class="form-control" rows="5" cols="10" id="content"
 											name="content">${model.content }</textarea>  --%>
-									 <form:textarea path="content" rows="5" cols="10"
-											cssClass="form-control" id="content"  name="content"  /> 
+										<form:textarea path="content" rows="5" cols="10"
+											cssClass="form-control" id="content" name="content" />
 									</div>
 								</div>
 								<form:hidden path="id" id="newid" />
@@ -129,9 +141,18 @@
 	var editor = '';
 	$(document).ready(function(){
 	     editor = CKEDITOR.replace('content');
-	     CKFinder.setupCKEditor(editor, '/nongnghiep/resources/ckfinder/');
+	     CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/resources/ckfinder/');
 	});
-		$('#btnAddOrUpdateNew').click	((e) =>{
+	function selectFileWithCKFinder(elementId) {
+        CKFinder.popup({
+            basePath: '<c:url value="/resources/ckfinder/" />',
+            selectActionFunction: function(fileUrl) {
+            	document.getElementById("thumbnail").value= fileUrl;
+            	document.getElementById(elementId).src = fileUrl;
+            }
+        });
+    }
+		$('#btnAddOrUpdateNew').click((e) =>{
 			e.preventDefault();
 		    var data = {};
 		    var formDataArray = $('#formSubmit').serializeArray();
@@ -140,27 +161,25 @@
 		    });
 		    const content = CKEDITOR.instances['content'].getData();
 			data['content'] = content;
-		    var formData = new FormData();
-		    formData.append('thumbnail', $('#thumbnail')[0].files[0]);
-		    formData.append('newDTO', new Blob([JSON.stringify(data)], { type: 'application/json' }));
-
 		    var id = $('#newid').val();
 		    
 		    if (id == "") {
-		        addNew(formData);
+		        addNew(data);
 		    } else {
-		        updateNew(formData);
+		        updateNew(data);
 		    }
 		});
-		function addNew(formData){
+		function addNew(data){
 		    $.ajax({
 		        url: '${newCreateAPI}',
 		        type: 'POST',
-		        processData: false, 
-		        contentType: false, 
-		        data: formData,
+		        contentType:'application/json',
+		        data: JSON.stringify(data),
+		        dataType: 'json',
 		        success: function (result) {
-		            swal("Thêm thành công.");
+		            swal("Thêm thành công.").then((value) =>{
+		            	window.location.reload();
+		            })
 		        },
 		        error: function (error) {
 		            swal("Lỗi.");
@@ -170,17 +189,19 @@
 	function updateNew(data){
 		$.ajax({
             url: '${newUpdateAPI}',
-            type: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (result) {
-              	window.location.href = "${newURL}?page=1&limit=2&id="+result.id+"&message=update_success";
-            },
-            error: function (error) {
-            	window.location.href = "${editNewURL}?message=error_system";
-            }
-        });
+	        type: 'PUT',
+	        contentType:'application/json',
+	        data: JSON.stringify(data),
+	        dataType: 'json',
+	        success: function (result) {
+	            swal("Cập nhật thành công").then((value) =>{
+	            	window.location.reload();
+	            })
+	        },
+	        error: function (error) {
+	            swal("Lỗi.");
+	        }
+	    });
 	}
 </script>
 </body>

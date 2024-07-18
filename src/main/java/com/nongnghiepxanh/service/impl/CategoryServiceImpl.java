@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nongnghiepxanh.convert.CategoryConvert;
+import com.nongnghiepxanh.dto.CategoryDTO;
 import com.nongnghiepxanh.entity.CategoryEntity;
 import com.nongnghiepxanh.repository.CategoryRepository;
 import com.nongnghiepxanh.service.ICategoryService;
@@ -25,5 +26,10 @@ public class CategoryServiceImpl implements ICategoryService {
 			result.put(item.getCode(), item.getName());
 		}
 		return result;
+	}
+	@Override
+	public List<CategoryDTO> topCategory(String type) {
+		
+		return categoryConvert.toDTO(categoryRepository.findAllByType(type));
 	}
 }

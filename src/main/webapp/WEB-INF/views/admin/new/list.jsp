@@ -62,6 +62,8 @@
 													<th><input type="checkbox" id="checkAll"></th>
 													<th>Ảnh đại diện </th>
 													<th>Tên bài viết</th>
+													<th>Thể loại</th>
+													<th>Mẫu</th>
 													<th>Mô tả ngắn</th>
 													<th>Thao tác</th>
 												</tr>
@@ -71,8 +73,10 @@
 													<tr>
 														<td><input type="checkbox" id="checkbox_${item.id}"
 															value="${item.id}"></td>
-															<td> <img src="<c:url value='/resources/img/${item.thumbnail}'  />" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
+															<td> <img src="${item.thumbnail}" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
 														<td>${item.title}</td>
+														<td>${item.categoryCode}</td>
+														<td>${item.type}</td>
 														<td>${item.shortDescription}</td>
 														<td><c:url var="updateNewURL"
 																value="/quan-tri/bai-viet/chinh-sua">
@@ -81,7 +85,7 @@
 															data-toggle="tooltip" title="Cập nhật bài viết"
 															href='${updateNewURL }'><i
 																class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
-																 <input type='button' data="${item.id }" class="btn btn-danger btn-sm"   value="Xóa"    type="student"  onclick="warningBeforeDelete()"> </a>
+																 <input type='button' class="btn btn-danger btn-sm"   value="Xóa"    type="student"  onclick="warningBeforeDelete2(${item.id})"> </a>
 															</td>
 													</tr>
 												</c:forEach>
@@ -105,7 +109,7 @@
 	$(function () {
         window.pagObj = $('#pagination').twbsPagination({
             totalPages: totalPages,
-            visiblePages: 3,
+            visiblePages: 5,
             startPage: currentPage,
             onPageClick: function (event, page) {
             	if (currentPage != page) {
@@ -134,6 +138,22 @@
 			    }
 			  })
 	}
+	function warningBeforeDelete2(id) {
+		swal({
+			  title: "Xóa?",
+			  text: "Sau khi xóa dữ liệu sẽ không thể khôi phục!",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+						var data = [id];
+						 deleteNew(data); 
+			    }
+			  })
+	}
+	
 	 function deleteNew(data) {
 		        $.ajax({
 		            url: '${deleteAPI}',
@@ -142,7 +162,7 @@
 		            data: JSON.stringify(data),
 		            success: function (result) {
 		            	swal("Đã xóa thành công.").then(() => {
-		            		window.location.href = "${newURL}";
+		            		window.location.href= "<%=request.getContextPath()%>/quan-tri/bai-viet/danh-sach";
 		            	});
 		            },
 		            error: function (error) {

@@ -12,4 +12,5 @@ public  interface INewService {
 	NewDTO save(NewDTO dto);
 	NewDTO findOneByID(Long id);
 	void deleteNew(long [] ids);
+	List<NewDTO> findHeadNew(String type);
 }
