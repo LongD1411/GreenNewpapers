@@ -25,7 +25,7 @@ public class NewConvert {
 				dto.setShortDescription(item.getShortDescription());
 				dto.setThumbnail(item.getThumbnail());
 				dto.setType(item.getType());
-				dto.setModifiedDate((Timestamp) item.getModifiedDate());
+				dto.setCreatedDate((Timestamp) item.getCreatedDate());
 				dto.setModifiedBy(item.getModifiedBy());
 				result.add(dto);
 			}
@@ -57,7 +57,7 @@ public class NewConvert {
 		dto.setId(entity.getId());
 		dto.setThumbnail(entity.getThumbnail());
 		dto.setType(entity.getType());
-		dto.setModifiedDate((Timestamp) entity.getModifiedDate());
+		dto.setCreatedDate((Timestamp) entity.getCreatedDate());
 		dto.setModifiedBy(entity.getModifiedBy());
 		return dto;
 		

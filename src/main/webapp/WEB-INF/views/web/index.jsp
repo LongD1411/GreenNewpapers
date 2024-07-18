@@ -31,7 +31,7 @@
 	                                <div class="mb-1">
 	                                    <a class="text-white" href="">${item.categoryCode }</a>
 	                                    <span class="px-2 text-white">/</span>
-	                                    <a class="text-white" href="">${item.modifiedDate }</a>
+	                                    <a class="text-white" href="">${item.createdDate }</a>
 	                                </div>
 	                                <a class="h2 m-0 text-white font-weight-bold" href="">${item.title }</a>
 	                            </div>

@@ -8,4 +8,5 @@ import com.nongnghiepxanh.dto.CategoryDTO;
 public interface ICategoryService {
 	Map<String,String> findAll();
 	List<CategoryDTO> topCategory(String type);
+	List<CategoryDTO> findAllCategory();
 }
