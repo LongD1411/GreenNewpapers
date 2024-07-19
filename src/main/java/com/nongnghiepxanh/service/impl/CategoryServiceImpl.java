@@ -36,4 +36,13 @@ public class CategoryServiceImpl implements ICategoryService {
 	public List<CategoryDTO> findAllCategory() {
 		return  categoryConvert.toDTO(categoryRepository.findAll());
 	}
+	@Override
+	public List<CategoryDTO> findAllCategoryWorking() {
+        return categoryRepository.findAllCategoryWorking();
+    }
+	@Override
+	public CategoryDTO findOneByCategoryCode(String code) {
+		// TODO Auto-generated method stub
+		return categoryConvert.toDTO(categoryRepository.findOneByCode(code));
+	}
 }

@@ -23,4 +23,13 @@ public class CategoryConvert {
 		}
 		return result;
 	}
+	public CategoryDTO toDTO(CategoryEntity entity) {
+		CategoryDTO dto = new CategoryDTO();
+		dto.setCode(entity.getCode());
+		dto.setId(entity.getId());
+		dto.setName(entity.getName());
+		dto.setThumbnail(entity.getThumbnail());
+		dto.setType(entity.getType());
+		return dto;
+	}
 }

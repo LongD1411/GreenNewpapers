@@ -2,6 +2,16 @@ package com.nongnghiepxanh.dto;
 
 public class CategoryDTO  extends AbstractDTO<CategoryDTO>{
 	private String name, code, thumbnail, type;
+	public CategoryDTO(Long id, String name, String code, String thumbnail, String type) {
+        super(id);
+        this.name = name;
+        this.code = code;
+        this.thumbnail = thumbnail;
+        this.type = type;
+    }
+	
+	public CategoryDTO() {
+	}
 
 	public String getName() {
 		return name;

@@ -5,9 +5,8 @@
 <div class="container-fluid">
 	<div class="container">
 		<nav class="breadcrumb bg-transparent m-0 p-0">
-			<a class="breadcrumb-item" href="<c:url value='/trang-chu'/>">Home</a> <a
-				class="breadcrumb-item" href="<c:url value='/danh-muc'/>">Category</a> <span
-				class="breadcrumb-item active"></span>
+			<a class="breadcrumb-item" href="<c:url value='/trang-chu'/>">Trang chủ</a> <a
+				class="breadcrumb-item" href="<c:url value='/danh-muc'/>">Danh mục</a> 
 		</nav>
 	</div>
 </div>
@@ -22,7 +21,7 @@
 						<div class="col-12">
 						<div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
                            <h3 class="m-0">${category.name }</h3>
-                           <a class="text-secondary font-weight-medium text-decoration-none" href="">Xem tất cả</a>
+                           <a class="text-secondary font-weight-medium text-decoration-none" href="<c:url value='/danh-muc/${category.code }'/>">Xem tất cả</a>
                         </div>
 					</div>
 					<c:forEach var="news" items="${news}">

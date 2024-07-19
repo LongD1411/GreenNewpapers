@@ -79,4 +79,8 @@ public class NewService implements INewService{
 		}
 		return result;
 	}
+	@Override
+	public List<NewDTO> findNewByCategoryCode(String code) {
+		return newConvert.toDTO(newRepository.findByCategoryCode(code));
+	}
 }

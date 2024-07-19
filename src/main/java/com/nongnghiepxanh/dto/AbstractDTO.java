@@ -22,7 +22,13 @@ public class AbstractDTO<T> {
 	private String alert;
 	private String message;
 	private String type;
+	public AbstractDTO(Long id) {
+        this.id = id;
+    }
 	
+	public AbstractDTO() {
+	}
+
 	public Long getId() {
 		return id;
 	}

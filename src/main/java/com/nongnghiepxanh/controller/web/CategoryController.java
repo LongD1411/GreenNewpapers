@@ -22,8 +22,12 @@ public class CategoryController {
 	@RequestMapping(value="/danh-muc",method = RequestMethod.GET)
 	public ModelAndView category() {
 		ModelAndView mav = new ModelAndView("web/category");
+		//footer
+		List<CategoryDTO> allCategory = categoryService.findAllCategory();
+		mav.addObject("listCategory",allCategory);
+		//content
 		List<NewDTO> trendNews =  newService.findHeadNew("hot");
-		List<CategoryDTO> categoryList = categoryService.findAllCategory();
+		List<CategoryDTO> categoryList = categoryService.findAllCategoryWorking();
 		List<NewDTO> news = newService.findAllTop2();
 		mav.addObject("trendNews",trendNews);
 		mav.addObject("categoryList", categoryList);
