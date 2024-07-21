@@ -51,7 +51,8 @@ public class NewService implements INewService{
 			newEntity = newConvert.toEntity(dto);
 		    newEntity.setCategory(categoryEntity);
 		}
-		return newConvert.toDTO(newRepository.save(newEntity));
+		 NewEntity entity = newRepository.save(newEntity);
+		return  dto;
 	}
 	@Override
 	public NewDTO findOneByID(Long id) {
@@ -82,5 +83,10 @@ public class NewService implements INewService{
 	@Override
 	public List<NewDTO> findNewByCategoryCode(String code) {
 		return newConvert.toDTO(newRepository.findByCategoryCode(code));
+	}
+	@Override
+	public NewDTO findOneById(Long id) {
+		
+		return newConvert.toDTO(newRepository.findOne(id));
 	}
 }

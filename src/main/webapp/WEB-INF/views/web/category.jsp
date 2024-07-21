@@ -31,11 +31,11 @@
                                 <img class="img-fluid w-100	" src="${news.thumbnail }" style="object-fit: cover; height:280px; width: 500px;]">
                                 <div class="overlay position-relative bg-light">
                                     <div class="mb-2" style="font-size: 14px;">
-                                        <a href="">${category.name }</a>
+                                        <a href="<c:url value="/danh-muc/${category.code }"/>">${category.name }</a>
                                         <span class="px-1">/</span>
                                         <span>${news.createdDate }</span>
                                     </div>
-                                    <a class="h4" href="">${news.title }</a>
+                                    <a class="h4" href="<c:url value='/${news.id }'/>">${news.title }</a>
                                     <p class="m-0"></p>
                                 </div>
                             </div>
@@ -56,11 +56,16 @@
                            <img src="${item.thumbnail }" style="width: 100px; height: 100px; object-fit: cover;">
                             <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
                                 <div class="mb-1" style="font-size: 13px;">
-                                    <a href="">${item.categoryCode }</a>
+                                    <a href=""><c:forEach var="category"
+											items="${categoryModel.listResult }">
+											<c:if test="${category.code eq item.categoryCode }">
+												 		${category.name }
+											</c:if>
+										</c:forEach></a>
                                     <span class="px-1">/</span>
-                                    <span>${item.createdDate }</span>
+                                    <span class="dateDisplay">${item.createdDate }</span>
                                 </div>
-                                <a class="h6 m-0" href="">${item.title }</a>
+                                <a class="h6 m-0" href="<c:url value='/${item.id }'/>">${item.title }</a>
                             </div>
                         </div>
                         </c:forEach>
@@ -71,3 +76,26 @@
 	</div>
 </div>
 <!-- Category News Slider End -->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// Lấy tất cả các phần tử có class 'dateDisplay'
+		var dateElements = document.getElementsByClassName('dateDisplay');
+
+		// Duyệt qua từng phần tử và định dạng ngày
+		for (var i = 0; i < dateElements.length; i++) {
+			var dateTimeStr = dateElements[i].innerText;
+			var formattedDate = formatDate(dateTimeStr);
+			dateElements[i].innerText = formattedDate;
+		}
+	});
+
+	function formatDate(dateString) {
+		// Tách phần ngày từ chuỗi ngày giờ
+		var datePart = dateString.split(' ')[0];
+		var dateParts = datePart.split('-');
+		var year = dateParts[0];
+		var month = dateParts[1];
+		var day = dateParts[2];
+		return day + '/' + month + '/' + year;
+	}
+</script>

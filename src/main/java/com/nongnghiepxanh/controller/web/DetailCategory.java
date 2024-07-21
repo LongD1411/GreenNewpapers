@@ -1,7 +1,5 @@
 package com.nongnghiepxanh.controller.web;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +22,7 @@ public class DetailCategory {
 	@RequestMapping(value = "/{categoryCode}", method = RequestMethod.GET)
 	public ModelAndView home(@PathVariable("categoryCode") String categoryCode) {
 		ModelAndView mav = new ModelAndView("web/detailcategory");
-		//content
+		//content	
 		NewDTO model = new NewDTO();
 		model.setListResult(newService.findNewByCategoryCode(categoryCode));
 		model.setMessage("category");
@@ -34,7 +32,7 @@ public class DetailCategory {
 		CategoryDTO categoryModel = categoryService.findOneByCategoryCode(categoryCode);
 		categoryModel.setListResult(categoryService.findAllCategory());
 		mav.addObject("categoryModel", categoryModel);
-		
+		mav.addObject("active", "category");
 		return mav;
 
 	}

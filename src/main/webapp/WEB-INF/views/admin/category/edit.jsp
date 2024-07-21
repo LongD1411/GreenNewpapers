@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="newURL" value="/quan-tri/bai-viet/danh-sach" />
-<c:url var="editNewURL" value="/quan-tri/bai-viet/chinh-sua" />
-<c:url var="newCreateAPI" value="/api/create-new" />
-<c:url var="newUpdateAPI" value="/api/update-new" />
+<c:url var="categoryCreateAPI" value="/api/create-category" />
+<c:url var="categoryUpdateAPI" value="/api/update-category" /> 
 <html>
 <head>
-<title>Chỉnh sửa bài viết</title>
+<title>Chỉnh sửa danh mục</title>
 </head>
 <body>
 	<div class="main-content">
@@ -34,20 +32,12 @@
 								modelAttribute="model">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="categoryCode"> Thể loại bài viết:</label>
+										for="categoryCode">Tên danh mục:</label>
 									<div class="col-sm-9">
-										<%-- <select class="form-control" id="categoryCode"
-											name="categoryCode">
-											<option>--- Chọn thể loại ---</option>
-											<c:forEach var="item" items='${categories }'>
-												<option value="${item.code }">${item.name}</option>
-											</c:forEach>
-										</select> --%>
-										<form:select path="categoryCode" id="categoryCode">
-											<form:option value="" label="--- Chọn thể loại ---" />
-											<form:options items='${categories}' />
-										</form:select>
+										<form:input path="name" id="name" cssClass="col-xs-7" />
+										<span id="nameMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 									</div>
+									
 								</div>
 								<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"
@@ -55,19 +45,19 @@
 								<div class="col-sm-9">
 								<form:select path="type" id="type">
 											<form:option value="nomal" label="Normal" />
-											<form:option value="mid" label="Mid" />
-											<form:option value="featured" label="Featured" />
 											<form:option value="hot" label="Hot" />
-										</form:select>
+								</form:select>
+								<span id="typeMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 								</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> Tên bài viết </label>
+										for="form-field-1"> Mã danh mục </label>
 									<div class="col-sm-9">
 										<%-- <input type="text" id="title" name="title"
 											class="col-xs-10 col-sm-5" value="${model.tittle }"> --%>
-										<form:input path="title" cssClass="col-xs-7" />
+										<form:input path="code" cssClass="col-xs-7" id="code" />
+										<span id="codeMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -81,6 +71,8 @@
 										<button type="button"
 											onclick="selectFileWithCKFinder('imageUrl');">Select
 											Image</button>
+											<span id="thumbnailMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
+											<div><span  style="color:red; font-style: italic;margin-left:5px">Lưu ý: Chọn ảnh có tỷ lệ 500 x 80</span></div>
 										</c:if>
 										<c:if test="${not empty model.thumbnail}">
 											<form:input type="hidden" path="thumbnail" id="thumbnail" />
@@ -89,27 +81,8 @@
 										<button type="button"
 											onclick="selectFileWithCKFinder('imageUrl');">Select
 											Image</button>
+											<div><span  style="color:red; font-style: italic;margin-left:5px">Lưu ý: Chọn ảnh có tỷ lệ 500 x 80</span></div>
 										</c:if>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="shortDescription">Mô tả ngắn:</label>
-									<div class="col-sm-5">
-										<%-- <textarea class="form-control" rows="5" cols="10"
-											id="shortDescription" name="shortDescription">${model.shortDescription }</textarea> --%>
-										<form:textarea path="shortDescription" rows="5" cols="10"
-											cssClass="form-control" id="shortDescription" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="content">Nội dung:</label>
-									<div class="col-sm-9">
-										<%-- <textarea class="form-control" rows="5" cols="10" id="content"
-											name="content">${model.content }</textarea>  --%>
-										<form:textarea path="content" rows="5" cols="10"
-											cssClass="form-control" id="content" name="content" />
 									</div>
 								</div>
 								<form:hidden path="id" id="newid" />
@@ -142,12 +115,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	var editor = '';
-	$(document).ready(function(){
-	     editor = CKEDITOR.replace('content',{width:700, height: 500});
-	     CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/resources/ckfinder/');
-	});
+		<script>
 	function selectFileWithCKFinder(elementId) {
         CKFinder.popup({
             basePath: '<c:url value="/resources/ckfinder/" />',
@@ -163,31 +131,28 @@
 		    var data = {};
 		    var formDataArray = $('#formSubmit').serializeArray();
 		    $.each(formDataArray, function (i, v) {
-		        data["" + v.name + ""] = v.value;
+		    	if(v.name != 'id' && v.value.trim() == ""){
+		    		isValid = false;
+		    		c++;
+		    		const messageElm = document.getElementById(v.name+"Message");
+		    		if(messageElm){
+		    			messageElm.removeAttribute("hidden");
+		    		}
+		    	}
+		        data["" + v.name + ""] = v.value.trim();
 		    });
-		    const content = CKEDITOR.instances['content'].getData();
-			data['content'] = content;
-			console.log(data)
-			if(data['categoryCode'].trim() == ""){
-				isValid = false;
-				swal("Lỗi","Chưa nhập thể loại","warning")
-			}
-			if(data['thumbnail'].trim() == ""){
-				isValid = false;
-				swal("Lỗi","Chưa nhập ảnh đại diện","warning")
-			}
 		    var id = $('#newid').val();
 		    if(isValid){
 		    if (id == "") {
-		        addNew(data);
+		        addCategory(data);
 		    } else {
-		        updateNew(data);
+		        updateCategory(data);
 		    }
 		  }
 		});
-		function addNew(data){
+		function addCategory(data){
 		    $.ajax({
-		        url: '${newCreateAPI}',
+		        url: '${categoryCreateAPI}',
 		        type: 'POST',
 		        contentType:'application/json',
 		        data: JSON.stringify(data),
@@ -202,9 +167,9 @@
 		        }
 		    });
 		}
-	function updateNew(data){
+	function updateCategory(data){
 		$.ajax({
-            url: '${newUpdateAPI}',
+            url: '${categoryUpdateAPI}',
 	        type: 'PUT',
 	        contentType:'application/json',
 	        data: JSON.stringify(data),
@@ -220,5 +185,3 @@
 	    });
 	}
 </script>
-</body>
-</html>

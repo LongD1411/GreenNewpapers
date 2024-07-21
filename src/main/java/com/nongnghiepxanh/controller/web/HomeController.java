@@ -30,12 +30,16 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/index");
 		mav.addObject("active", "home");
 		List<NewDTO> headNew = newService.findHeadNew("hot");
+		List<NewDTO> featuredNew = newService.findHeadNew("featured");
 		List<NewDTO> midNew = newService.findHeadNew("mid");
 		List<CategoryDTO> topCategory = categoryService.topCategory("hot");
-		List<CategoryDTO> allCategory = categoryService.findAllCategory();
+		CategoryDTO categoryModel = new CategoryDTO();
+		categoryModel.setListResult(categoryService.findAllCategory());
+		mav.addObject("categoryModel", categoryModel);
 		mav.addObject("headNewList",headNew);
-		mav.addObject("listCategory",allCategory);
+		mav.addObject("categoryModel",categoryModel);
 		mav.addObject("midNewList",midNew);
+		mav.addObject("featuredNews",featuredNew);
 		mav.addObject("categoryList",topCategory);
 		return mav;
 	}

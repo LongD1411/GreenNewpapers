@@ -9,7 +9,7 @@
                 <div class="d-flex">
                     <img src="${item.thumbnail }" style="width: 80px; height: 80px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">${item.title}</a>
+                        <a class="text-secondary font-weight-semi-bold" href="<c:url value='/${item.id }'/>">${item.title}</a>
                     </div>
                 </div>
               </c:forEach>
@@ -31,9 +31,9 @@
 	                                <div class="mb-1">
 	                                    <a class="text-white" href="">${item.categoryCode }</a>
 	                                    <span class="px-2 text-white">/</span>
-	                                    <a class="text-white" href="">${item.createdDate }</a>
+	                                    <a class="text-white" href=""><span class="dateDisplay">${item.createdDate }</span></a>
 	                                </div>
-	                                <a class="h2 m-0 text-white font-weight-bold" href="">${item.title }</a>
+	                                <a class="h2 m-0 text-white font-weight-bold" href="<c:url value="/${item.id }"/>">${item.title }</a>
 	                            </div>
 	                        </div>
                         </c:forEach>
@@ -63,64 +63,48 @@
                 <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
             </div>
             <div class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
+                <c:forEach var="item" items="${featuredNews }">
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="<c:url value='/template/web/img/news-300x300-1.jpg'/>" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="${item.thumbnail }" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
-                            <a class="text-white" href="">Technology</a>
+                            <a class="text-white" href="<c:url value='/danh-muc/${item.categoryCode }'/>"><c:forEach var="category"
+											items="${categoryModel.listResult }">
+											<c:if test="${category.code eq item.categoryCode }">
+												 		${category.name }
+											</c:if>
+										</c:forEach></a>
                             <span class="px-1 text-white">/</span>
-                            <a class="text-white" href="">January 01, 2045</a>
+                            <a class="text-white" href="" ><span class="dateDisplay">${item.createdDate }</span></a>
                         </div>
-                        <a class="h4 m-0 text-white" href="">Sanctus amet sed ipsum lorem</a>
+                        <a class="h4 m-0 text-white" href="<c:url value='/${item.id }'/>">${item.title }</a>
                     </div>
-                </div>
-                <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="<c:url value='/template/web/img/news-300x300-2.jpg'/>" style="object-fit: cover;">
-                    <div class="overlay">
-                        <div class="mb-1" style="font-size: 13px;">
-                            <a class="text-white" href="">Technology</a>
-                            <span class="px-1 text-white">/</span>
-                            <a class="text-white" href="">January 01, 2045</a>
-                        </div>
-                        <a class="h4 m-0 text-white" href="">Sanctus amet sed ipsum lorem</a>
-                    </div>
-                </div>
-                <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="<c:url value='/template/web/img/news-300x300-3.jpg'/>" style="object-fit: cover;">
-                    <div class="overlay">
-                        <div class="mb-1" style="font-size: 13px;">
-                            <a class="text-white" href="">Technology</a>
-                            <span class="px-1 text-white">/</span>
-                            <a class="text-white" href="">January 01, 2045</a>
-                        </div>
-                        <a class="h4 m-0 text-white" href="">Sanctus amet sed ipsum lorem</a>
-                    </div>
-                </div>
-                <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="<c:url value='/template/web/img/news-300x300-4.jpg'/>" style="object-fit: cover;">
-                    <div class="overlay">
-                        <div class="mb-1" style="font-size: 13px;">
-                            <a class="text-white" href="">Technology</a>
-                            <span class="px-1 text-white">/</span>
-                            <a class="text-white" href="">January 01, 2045</a>
-                        </div>
-                        <a class="h4 m-0 text-white" href="">Sanctus amet sed ipsum lorem</a>
-                    </div>
-                </div>
-                <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="<c:url value='/template/web/img/news-300x300-5.jpg'/>" style="object-fit: cover;">
-                    <div class="overlay">
-                        <div class="mb-1" style="font-size: 13px;">
-                            <a class="text-white" href="">Technology</a>
-                            <span class="px-1 text-white">/</span>
-                            <a class="text-white" href="">January 01, 2045</a>
-                        </div>
-                        <a class="h4 m-0 text-white" href="">Sanctus amet sed ipsum lorem</a>
-                    </div>
-                </div>
+                </div></c:forEach>
             </div>
         </div>
     </div>
-    </div>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// Lấy tất cả các phần tử có class 'dateDisplay'
+		var dateElements = document.getElementsByClassName('dateDisplay');
+
+		// Duyệt qua từng phần tử và định dạng ngày
+		for (var i = 0; i < dateElements.length; i++) {
+			var dateTimeStr = dateElements[i].innerText;
+			var formattedDate = formatDate(dateTimeStr);
+			dateElements[i].innerText = formattedDate;
+		}
+	});
+
+	function formatDate(dateString) {
+		// Tách phần ngày từ chuỗi ngày giờ
+		var datePart = dateString.split(' ')[0];
+		var dateParts = datePart.split('-');
+		var year = dateParts[0];
+		var month = dateParts[1];
+		var day = dateParts[2];
+		return day + '/' + month + '/' + year;
+	}
+</script>
     <!-- Featured News Slider End -->
     

@@ -12,4 +12,6 @@ public interface ICategoryService {
 	List<CategoryDTO> findAllCategory();
 	List<CategoryDTO> findAllCategoryWorking();
 	CategoryDTO findOneByCategoryCode(String code);
+	CategoryDTO findOneByID(Long id);
+	CategoryDTO save(CategoryDTO dto);
 }

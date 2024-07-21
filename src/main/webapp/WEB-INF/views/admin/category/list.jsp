@@ -8,7 +8,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Danh sách bài viết</title>
+<title>Danh sách danh mục</title>
 </head>
 
 <body>
@@ -26,19 +26,16 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-							<c:if test="${not empty message}">
-								<div class="alert alert-${alert}">${message}</div>
-							</c:if>
 							<div class="widget-box table-filter">
 								<div class="table-btn-controls">
 									<div class="pull-right tableTools-container">
 										<div class="dt-buttons btn-overlap btn-group">
-											<c:url var="createNewURL"
-												value="/quan-tri/bai-viet/chinh-sua" />
+											<c:url var="createCategoryURL"
+												value="/quan-tri/danh-muc/chinh-sua" />
 											<a flag="info"
 												class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 												data-toggle="tooltip" title='Thêm bài viết'
-												href='${createNewURL}'> <span> <i
+												href='${createCategoryURL}'> <span> <i
 													class="fa fa-plus-circle bigger-110 purple"></i>
 											</span>
 											</a>
@@ -61,9 +58,9 @@
 												<tr>
 													<th><input type="checkbox" id="checkAll"></th>
 													<th>Ảnh đại diện </th>
-													<th>Tên bài viết</th>
-													<th>Thể loại</th>
+													<th>Tên danh mục</th>
 													<th>Mẫu</th>
+													<th>Mã danh mục</th>
 													<th>Thao tác</th>
 												</tr>
 											</thead>
@@ -73,17 +70,17 @@
 														<td><input type="checkbox" id="checkbox_${item.id}"
 															value="${item.id}"></td>
 															<td> <img src="${item.thumbnail}" alt="Không có ảnh" style="width: 50px; height: 50px; object-fit: cover;"></td>
-														<td>${item.title}</td>
-														<td>${item.categoryCode}</td>
+														<td>${item.name}</td>
 														<td>${item.type}</td>
+														<td>${item.code}</td>
 														<td><c:url var="updateNewURL"
-																value="/quan-tri/bai-viet/chinh-sua">
+																value="/quan-tri/danh-muc/chinh-sua">
 																<c:param name="id" value="${item.id}" />
 															</c:url> <a class="btn btn-sm btn-primary btn-edit"
 															data-toggle="tooltip" title="Cập nhật bài viết"
 															href='${updateNewURL }'><i
 																class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
-																 <input type='button' class="btn btn-danger btn-sm"   value="Xóa"    type="student"  onclick="warningBeforeDelete2(${item.id})"> </a>
+																 <input type='button' class="btn btn-danger btn-sm"   value="Xóa"   onclick="warningBeforeDelete2(${item.id})"> </a>
 															</td>
 													</tr>
 												</c:forEach>
@@ -100,9 +97,8 @@
 			</div>
 		</form>
 	</div>
-	<!-- /.main-content -->
-	<script>
-	var totalPages = ${model.totalPage};
+		<script>
+	/* var totalPages = ${model.totalPage};
 	var currentPage = ${model.page};
 	$(function () {
         window.pagObj = $('#pagination').twbsPagination({
@@ -116,7 +112,7 @@
 				}
             }
         });
-    });
+    }); */
 	function warningBeforeDelete() {
 		swal({
 			  title: "Xóa?",

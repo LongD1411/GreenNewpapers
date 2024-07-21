@@ -38,7 +38,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text"></span>
-                Quản lý bài viết
+                Quản lý	chung
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -46,7 +46,21 @@
                 <li>
                     <a href="<c:url value='/quan-tri/bai-viet/danh-sach'/>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS bài viết
+                        Quản lý bài viết
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li>
+                    <a href="<c:url value='/quan-tri/danh-muc/danh-sach'/>">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Quản lý danh mục
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                <li>
+                    <a href="javascript:void(0y)">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Quản lý người dùng
                     </a>
                     <b class="arrow"></b>
                 </li>

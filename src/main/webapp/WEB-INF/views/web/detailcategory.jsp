@@ -27,10 +27,10 @@
 									class="w-100 d-flex flex-column justify-content-center bg-light px-3"
 									style="height: 100px;">
 									<div class="mb-1" style="font-size: 13px;">
-										<a href="">${item.categoryCode }</a> <span class="px-1">/</span>
+										<a href="">${categoryModel.name }</a> <span class="px-1">/</span>
 										<span class="dateDisplay">${item.createdDate }</span>
 									</div>
-									<a class="h6 m-0" href="">${item.title }</a>
+									<a class="h6 m-0" href="<c:url value='/${item.id }'/>">${item.title }</a>
 								</div>
 							</div>
 						</div>

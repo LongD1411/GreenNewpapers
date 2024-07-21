@@ -45,4 +45,13 @@ public class CategoryServiceImpl implements ICategoryService {
 		// TODO Auto-generated method stub
 		return categoryConvert.toDTO(categoryRepository.findOneByCode(code));
 	}
+	@Override
+	public CategoryDTO findOneByID(Long id) {
+		
+		return categoryConvert.toDTO(categoryRepository.findOne(id));
+	}
+	@Override
+	public CategoryDTO save(CategoryDTO dto) {
+		return categoryConvert.toDTO(categoryRepository.save(categoryConvert.toEntity(dto)));
+	}	
 }

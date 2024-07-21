@@ -152,7 +152,7 @@ sup {
 }
 
 a {
-  color: #ED1C24;
+  color: #ff0000;
   text-decoration: none;
   background-color: transparent;
 }
@@ -3976,7 +3976,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #ED1C24;
+  background-color: #00ff00;
 }
 
 .nav-fill > .nav-link,
@@ -9264,7 +9264,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #ED1C24 !important;
+  color: #fb260f!important;
 }
 
 a.text-primary:hover, a.text-primary:focus {

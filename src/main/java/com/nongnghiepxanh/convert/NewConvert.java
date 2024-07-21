@@ -4,13 +4,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nongnghiepxanh.dto.NewDTO;
-import com.nongnghiepxanh.entity.CategoryEntity;
 import com.nongnghiepxanh.entity.NewEntity;
-import com.nongnghiepxanh.repository.CategoryRepository;
 
 @Component
 public class NewConvert {
