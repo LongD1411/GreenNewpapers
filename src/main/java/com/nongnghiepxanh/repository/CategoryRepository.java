@@ -10,7 +10,9 @@ import com.nongnghiepxanh.entity.CategoryEntity;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 	CategoryEntity findOneByCode(String Code);
+
 	List<CategoryEntity> findAllByType(String type);
+
 	@Query("select distinct new com.nongnghiepxanh.dto.CategoryDTO(c.id, c.name, c.code, c.thumbnail, c.type) from CategoryEntity c join c.news n")
 	List<CategoryDTO> findAllCategoryWorking();
 }

@@ -47,6 +47,7 @@
 											<form:option value="" label="--- Chọn thể loại ---" />
 											<form:options items='${categories}' />
 										</form:select>
+										<span id="categoryCodeMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -59,6 +60,7 @@
 											<form:option value="featured" label="Featured" />
 											<form:option value="hot" label="Hot" />
 										</form:select>
+									<span id="typeMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden" >Chưa nhập dữ liệu</span>
 								</div>
 								</div>
 								<div class="form-group">
@@ -67,7 +69,8 @@
 									<div class="col-sm-9">
 										<%-- <input type="text" id="title" name="title"
 											class="col-xs-10 col-sm-5" value="${model.tittle }"> --%>
-										<form:input path="title" cssClass="col-xs-7" />
+										<form:input path="title" id="title" cssClass="col-xs-7" />
+										<span id="titleMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -81,6 +84,7 @@
 										<button type="button"
 											onclick="selectFileWithCKFinder('imageUrl');">Select
 											Image</button>
+											<span id="thumbnailMessage" style="color:red; font-style: italic;margin-left:5px"hidden="hidden" >Chưa nhập dữ liệu</span>
 										</c:if>
 										<c:if test="${not empty model.thumbnail}">
 											<form:input type="hidden" path="thumbnail" id="thumbnail" />
@@ -89,6 +93,7 @@
 										<button type="button"
 											onclick="selectFileWithCKFinder('imageUrl');">Select
 											Image</button>
+											<span id="thumbnailMessage" style="color:red; font-style: italic;margin-left:5px" hidden="hidden">Chưa nhập dữ liệu</span>
 										</c:if>
 									</div>
 								</div>
@@ -100,6 +105,7 @@
 											id="shortDescription" name="shortDescription">${model.shortDescription }</textarea> --%>
 										<form:textarea path="shortDescription" rows="5" cols="10"
 											cssClass="form-control" id="shortDescription" />
+											<span id="shortDescriptionMessage" style="color:red; font-style: italic;margin-left:5px"hidden="hidden" >Chưa nhập dữ liệu</span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -108,8 +114,8 @@
 									<div class="col-sm-9">
 										<%-- <textarea class="form-control" rows="5" cols="10" id="content"
 											name="content">${model.content }</textarea>  --%>
-										<form:textarea path="content" rows="5" cols="10"
-											cssClass="form-control" id="content" name="content" />
+										<form:textarea path="content" id="content" rows="5" cols="10"
+											cssClass="form-control"  name="content" />
 									</div>
 								</div>
 								<form:hidden path="id" id="newid" />
@@ -163,19 +169,23 @@
 		    var data = {};
 		    var formDataArray = $('#formSubmit').serializeArray();
 		    $.each(formDataArray, function (i, v) {
+		    	if(v.name != 'id' && v.name != 'content' && v.value.trim() == ""){
+		    		isValid = false;
+		    		const messageElm = document.getElementById(v.name+"Message");
+		    		if(messageElm){
+		    			messageElm.removeAttribute("hidden");
+		    		}
+		    	}
+		    	if(v.name != 'id' && v.value.trim() != ""){
+		    		const messageElm = document.getElementById(v.name+"Message");
+		    		if(messageElm){
+		    			messageElm.setAttribute("hidden","hidden");
+		    		}
+		    	}
 		        data["" + v.name + ""] = v.value;
 		    });
 		    const content = CKEDITOR.instances['content'].getData();
 			data['content'] = content;
-			console.log(data)
-			if(data['categoryCode'].trim() == ""){
-				isValid = false;
-				swal("Lỗi","Chưa nhập thể loại","warning")
-			}
-			if(data['thumbnail'].trim() == ""){
-				isValid = false;
-				swal("Lỗi","Chưa nhập ảnh đại diện","warning")
-			}
 		    var id = $('#newid').val();
 		    if(isValid){
 		    if (id == "") {

@@ -1,6 +1,8 @@
 package com.nongnghiepxanh.api.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,4 +25,12 @@ public class CategoryAPI {
 		return categoryService.save(dto);
 				
 	}
+//	 @DeleteMapping("/api/delete-category")
+//	    public void deleteCategory(@RequestBody long[] ids) {
+//	        try {
+//	            categoryService.deleteCategory(ids);
+//	        } catch (IllegalStateException e) {
+//	        }
+//	    }
+	
 }

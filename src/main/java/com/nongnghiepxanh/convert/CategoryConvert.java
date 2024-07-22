@@ -40,4 +40,11 @@ public class CategoryConvert {
 		entity.setType(dto.getType());
 		return entity;
 	}
+	public CategoryEntity toEntity(CategoryDTO dto, CategoryEntity entity) {
+		entity.setCode(dto.getCode());
+		entity.setName(dto.getName());
+		entity.setThumbnail(dto.getThumbnail());
+		entity.setType(dto.getType());
+		return entity;
+	}
 }

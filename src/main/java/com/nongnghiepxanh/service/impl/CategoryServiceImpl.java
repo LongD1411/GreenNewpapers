@@ -11,11 +11,14 @@ import com.nongnghiepxanh.convert.CategoryConvert;
 import com.nongnghiepxanh.dto.CategoryDTO;
 import com.nongnghiepxanh.entity.CategoryEntity;
 import com.nongnghiepxanh.repository.CategoryRepository;
+import com.nongnghiepxanh.repository.NewRepository;
 import com.nongnghiepxanh.service.ICategoryService;
 @Service
 public class CategoryServiceImpl implements ICategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private NewRepository newRepository;
 	@Autowired
 	private CategoryConvert categoryConvert;
 	@Override
@@ -52,6 +55,22 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 	@Override
 	public CategoryDTO save(CategoryDTO dto) {
-		return categoryConvert.toDTO(categoryRepository.save(categoryConvert.toEntity(dto)));
+		CategoryDTO dto2 = new CategoryDTO();
+		if(dto.getId()==null) {
+			dto2 =  categoryConvert.toDTO(categoryRepository.save(categoryConvert.toEntity(dto)));
+		}else {
+			CategoryEntity oldEntity = categoryRepository.findOne(dto.getId());
+			CategoryEntity newEntity = categoryConvert.toEntity(dto, oldEntity);
+			dto2 = categoryConvert.toDTO(categoryRepository.save(newEntity));
+		}
+		return dto2;
 	}	
+//	 public void deleteCategory(long [] ids) {
+//	       for(Long id :ids) {
+//	    	   if (newRepository.existsByCategoryId(id)) {
+//		            throw new IllegalStateException("Cannot delete category with related news items.");
+//		        }
+//		        categoryRepository.delete(id);
+//	       }
+//	    }
 }

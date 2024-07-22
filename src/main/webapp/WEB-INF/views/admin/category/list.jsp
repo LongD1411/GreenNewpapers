@@ -114,38 +114,10 @@
         });
     }); */
 	function warningBeforeDelete() {
-		swal({
-			  title: "Xóa?",
-			  text: "Sau khi xóa dữ liệu sẽ không thể khôi phục!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-						var data = {};
-						var ids = $('tbody input[type=checkbox]:checked').map( function () {
-				            return $(this).val();
-				            }).get();
-						data['ids'] = ids;
-						 deleteNew(ids); 
-			    }
-			  })
+		swal("...","Đang cập nhật", "info")
 	}
 	function warningBeforeDelete2(id) {
-		swal({
-			  title: "Xóa?",
-			  text: "Sau khi xóa dữ liệu sẽ không thể khôi phục!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-						var data = [id];
-						 deleteNew(data); 
-			    }
-			  })
+		swal("...","Đang cập nhật", "info")
 	}
 	
 	 function deleteNew(data) {

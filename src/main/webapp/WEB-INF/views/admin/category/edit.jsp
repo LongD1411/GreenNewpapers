@@ -133,7 +133,6 @@
 		    $.each(formDataArray, function (i, v) {
 		    	if(v.name != 'id' && v.value.trim() == ""){
 		    		isValid = false;
-		    		c++;
 		    		const messageElm = document.getElementById(v.name+"Message");
 		    		if(messageElm){
 		    			messageElm.removeAttribute("hidden");

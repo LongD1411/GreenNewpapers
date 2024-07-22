@@ -10,7 +10,11 @@ import com.nongnghiepxanh.entity.NewEntity;
 
 public interface NewRepository extends JpaRepository<NewEntity, Long> {
 	List<NewEntity> findAllByType(String type);
+
 	@Query("SELECT n FROM NewEntity n WHERE n.category.id = ?1 ORDER BY n.createdDate DESC")
-    List<NewEntity> findTop2ByCategoryId(Long categoryId, Pageable pageable);
+	List<NewEntity> findTop2ByCategoryId(Long categoryId, Pageable pageable);
+
 	List<NewEntity> findByCategoryCode(String code);
+
+	boolean existsByCategoryId(Long categoryId);
 }
