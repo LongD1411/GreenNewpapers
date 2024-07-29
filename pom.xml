@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nongnghiepxanh</groupId>
-	<artifactId>nongnghiep</artifactId>
+	<groupId>com.leubao</groupId>
+	<artifactId>leubao</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
@@ -15,7 +15,7 @@
 		<jstl.version>1.2</jstl.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<spring.data>1.11.5.RELEASE</spring.data>
-		<mssql-version>9.4.0.jre8</mssql-version>
+		<mysql.version>8.0.33</mysql.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -118,9 +118,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>${mssql-version}</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
 
 		<!-- Hibernate -->
@@ -139,7 +139,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
+		
 		<!-- Spring data -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>

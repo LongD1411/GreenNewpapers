@@ -17,8 +17,8 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	 <baseDir>C:/Users/pc/Documents/yeu em/WorkSpace2/nongnghiep/src/main/webapp/resources/img/</baseDir>
-	<baseURL>http://localhost:8080/nongnghiep/resources/img/</baseURL>
+	<baseDir>/home/ubuntu/apache-tomcat-9.0.91/webapps/ROOT/resources/img</baseDir>
+	<baseURL>https://leubao.xyz/resources/img/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

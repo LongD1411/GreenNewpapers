@@ -7,7 +7,7 @@
                 <a href="<c:url value="/trang-chu"/>" class="navbar-brand">
                     <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">Lều Báo</span></h1>
                 </a>
-                <p>Cập nhật thông tin về nông nghiệp 24/7</p>
+                <p>Cập nhật thông tin 24/7</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="jvascript:void(0)" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="https://fb.com/nguyenduclong1411" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -44,7 +44,7 @@
     </div>
     <div class="container-fluid py-4 px-sm-3 px-md-5">
         <p class="m-0 text-center">
-            &copy; <a class="font-weight-bold" href="">Nông nghiệp xanh</a>. All Rights Reserved. 
+            &copy; <a class="font-weight-bold" href="">Lều Báo</a>. All Rights Reserved. 
         </p>
     </div>
     <!-- Footer End -->

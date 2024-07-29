@@ -21,7 +21,7 @@
               http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan
-		base-package="com.nongnghiepxanh.controller, com.nongnghiepxanh.api" />
+		base-package="com.leubao.controller, com.leubao.api" />
 
 	<mvc:annotation-driven />
 	<bean

@@ -25,8 +25,7 @@
 			<div class="col-lg-8">
 				<!-- News Detail Start -->
 				<div class="position-relative mb-3">
-					<img class="img-fluid w-100" src="${model.thumbnail }"
-						style="object-fit: cover;">
+
 					<div class="overlay position-relative bg-light">
 						<div class="mb-3">
 							<a href="<c:url value="/danh-muc/${model.categoryCode }"/>">${categoryName }</a>
